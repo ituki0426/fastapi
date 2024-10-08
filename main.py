@@ -1,9 +1,19 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 import requests
 from bs4 import BeautifulSoup
 import re
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8081"],  # アクセスを許可するオリジンを指定
+    allow_credentials=True,
+    allow_methods=["*"],  # 全てのHTTPメソッドを許可
+    allow_headers=["*"],  # 全てのHTTPヘッダーを許可
+)
 
 @app.get("/scrape")
 async def scrape():
