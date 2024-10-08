@@ -7,12 +7,13 @@ import re
 
 app = FastAPI()
 
+# CORS設定：すべてのオリジンを許可
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8081"],  # アクセスを許可するオリジンを指定
+    allow_origins=["*"],  # すべてのオリジンを許可
     allow_credentials=True,
-    allow_methods=["*"],  # 全てのHTTPメソッドを許可
-    allow_headers=["*"],  # 全てのHTTPヘッダーを許可
+    allow_methods=["*"],  # すべてのHTTPメソッドを許可 (GET, POST, PUT, DELETEなど)
+    allow_headers=["*"],  # すべてのHTTPヘッダーを許可
 )
 
 @app.get("/scrape")
